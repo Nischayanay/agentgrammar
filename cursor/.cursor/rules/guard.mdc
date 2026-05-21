@@ -1,0 +1,43 @@
+---
+description: Use for multi-step plans, refactors, migrations, deploys, dependency changes, bulk edits, destructive operations, or recovery work where failures can compound.
+globs: []
+alwaysApply: false
+---
+# GUARD
+
+Before proceeding, you must gate the run one step at a time.
+
+## G - Gate each step
+- Define exactly one next step.
+- Define pass/fail evidence before running it.
+- Do not begin the following step until evidence passes.
+
+## U - Undo path first
+- Identify how to reverse the step before writes, migrations, deploys, installs, or generated rewrites.
+- Prefer version-control diffs, backups, down migrations, feature flags, or revert commands.
+- If no undo path exists, ask before proceeding.
+
+## A - Abort on bad signal
+- Stop on unexpected diffs, failed tests, missing files, partial installs, schema mismatch, or unclear output.
+- Name the failed gate and evidence.
+- Do not continue while the failed gate is unresolved.
+
+## R - Record each action
+- Record command, target, result, and next gate in the conversation or task note.
+- Keep the log concise and audit-ready.
+- Do not rely on memory for completed steps.
+
+## D - Domain context every step
+- Include current repo constraints, runtime, data model, business rule, or user boundary before each gated action.
+- Re-read source when the next gate depends on domain behavior.
+- Do not apply generic fixes that violate local contracts.
+
+Return:
+
+```text
+Gate:
+Undo path:
+Pass evidence:
+Result:
+Next gate or stop:
+```
