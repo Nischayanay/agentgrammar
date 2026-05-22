@@ -12,10 +12,11 @@ agentgrammar is small on purpose. Add rules only when they stop a real agent fai
 Create all four tool files:
 
 ```text
-claude-code/.claude/skills/<name>/SKILL.md    # current Claude skill format, under 60 lines
-cursor/.cursor/rules/<name>.mdc               # Cursor rule format, under 50 lines
-codex/AGENTS.md                               # update the standing context, keep file under 120 lines
-universal/agentgrammar.md                     # update the paste-in prompt, keep file under 80 lines
+claude-code/.claude/skills/<name>/SKILL.md              # Claude skill format, under 60 lines
+cursor/.cursor/rules/<name>.mdc                        # Cursor rule format, under 50 lines
+cursor/.cursor/skills/agentgrammar-<name>/SKILL.md     # Cursor slash-command skill, under 60 lines
+codex/AGENTS.md                                        # update the standing context, keep file under 120 lines
+universal/agentgrammar.md                              # update the paste-in prompt, keep file under 80 lines
 ```
 
 A framework acronym must:
@@ -55,6 +56,7 @@ Mirror the tool's native layout inside that folder. Examples already in this rep
 ```text
 claude-code/.claude/skills/scope/SKILL.md
 cursor/.cursor/rules/scope.mdc
+cursor/.cursor/skills/agentgrammar-scope/SKILL.md
 codex/AGENTS.md
 universal/agentgrammar.md
 ```
@@ -72,6 +74,8 @@ Update `install.sh` with:
 - [ ] Every acronym letter is a concrete action.
 - [ ] Claude skill files stay under 60 lines.
 - [ ] Cursor rule files stay under 50 lines and use the right activation mode.
+- [ ] Cursor skill files stay under 60 lines and use `disable-model-invocation: true`.
+- [ ] `install.sh cursor` copies both rules and `agentgrammar-*` skills.
 - [ ] `codex/AGENTS.md` stays under 120 lines.
 - [ ] `universal/agentgrammar.md` stays under 80 lines.
 - [ ] `bash -n install.sh` passes.

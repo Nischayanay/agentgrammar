@@ -94,8 +94,16 @@ These are Claude Code skills, not legacy `.claude/commands` files. If slash-styl
 
 ### Cursor
 
+Project-local install:
+
 ```bash
 /path/to/agentgrammar/install.sh cursor
+```
+
+Global install (all projects, slash commands in every workspace):
+
+```bash
+/path/to/agentgrammar/install.sh cursor --global
 ```
 
 Installs:
@@ -106,16 +114,38 @@ Installs:
 .cursor/rules/trust.mdc
 .cursor/rules/logic.mdc
 .cursor/rules/guard.mdc
+.cursor/skills/agentgrammar-scope/SKILL.md
+.cursor/skills/agentgrammar-clear/SKILL.md
+.cursor/skills/agentgrammar-trust/SKILL.md
+.cursor/skills/agentgrammar-logic/SKILL.md
+.cursor/skills/agentgrammar-guard/SKILL.md
 ```
 
-How to use it in Cursor:
+Global install writes rules to `~/.cursor/rules/` and skills to `~/.cursor/skills/`.
+
+#### Slash commands (recommended)
+
+After install, restart Cursor and open a new Agent chat. Type `/` and search `agentgrammar`:
+
+| Slash command | Framework |
+| --- | --- |
+| `/agentgrammar-scope` | SCOPE |
+| `/agentgrammar-clear` | CLEAR |
+| `/agentgrammar-trust` | TRUST |
+| `/agentgrammar-logic` | LOGIC |
+| `/agentgrammar-guard` | GUARD |
+
+Example:
 
 ```text
-Ask Cursor normally. The rule descriptions tell Cursor when to pull them in.
-You can also mention @scope, @clear, @trust, @logic, or @guard manually if your Cursor setup supports rule mentions.
+/agentgrammar-scope add payment status to checkout API only
 ```
 
-Activation model:
+Cursor skill names use hyphens (not `/agentgrammar/scope`). The installer registers the names above automatically.
+
+#### Rules (automatic)
+
+Rules still apply when Cursor matches the task. You can also mention `@scope`, `@clear`, `@trust`, `@logic`, or `@guard` if your setup supports rule mentions.
 
 | Rule | Activation |
 | --- | --- |
@@ -175,7 +205,7 @@ Installs Claude Code skills, Cursor rules, Codex `AGENTS.md`, and the universal 
 - The installer works from any directory.
 - Existing files are never silently overwritten.
 - If a target file exists, the installer asks before replacing it.
-- `--global` is only valid for `claude-code`.
+- `--global` is valid for `claude-code` and `cursor`.
 - The script refuses to install into agentgrammar's own source tool folders.
 
 ## Quick Examples
@@ -224,12 +254,19 @@ agentgrammar/
 │   ├── trust/SKILL.md
 │   ├── logic/SKILL.md
 │   └── guard/SKILL.md
-├── cursor/.cursor/rules/
-│   ├── scope.mdc
-│   ├── clear.mdc
-│   ├── trust.mdc
-│   ├── logic.mdc
-│   └── guard.mdc
+├── cursor/.cursor/
+│   ├── rules/
+│   │   ├── scope.mdc
+│   │   ├── clear.mdc
+│   │   ├── trust.mdc
+│   │   ├── logic.mdc
+│   │   └── guard.mdc
+│   └── skills/
+│       ├── agentgrammar-scope/SKILL.md
+│       ├── agentgrammar-clear/SKILL.md
+│       ├── agentgrammar-trust/SKILL.md
+│       ├── agentgrammar-logic/SKILL.md
+│       └── agentgrammar-guard/SKILL.md
 ├── codex/AGENTS.md
 ├── universal/agentgrammar.md
 └── .gitignore

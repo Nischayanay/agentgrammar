@@ -31,10 +31,11 @@ usage() {
   echo "  ./install.sh"
   echo "  ./install.sh <tool>"
   echo "  ./install.sh claude-code --global"
+  echo "  ./install.sh cursor --global"
   echo ""
   echo "Supported tools:"
   echo "  claude-code   installs Claude Code skills to ./.claude/skills/"
-  echo "  cursor        installs Cursor rules to ./.cursor/rules/"
+  echo "  cursor        installs Cursor rules and slash-command skills"
   echo "  codex         copies Codex standing context to ./AGENTS.md"
   echo "  universal     copies the tool-agnostic prompt to ./agentgrammar.md"
   echo "  all           installs claude-code, cursor, codex, and universal locally"
@@ -98,12 +99,21 @@ install_claude_code() {
 }
 
 install_cursor() {
-  ensure_not_source_target "$SCRIPT_DIR/cursor"
-  dest_root="$TARGET_DIR/.cursor/rules"
+  if [ "${GLOBAL_INSTALL:-0}" = "1" ]; then
+    rules_root="$HOME/.cursor/rules"
+    skills_root="$HOME/.cursor/skills"
+  else
+    ensure_not_source_target "$SCRIPT_DIR/cursor"
+    rules_root="$TARGET_DIR/.cursor/rules"
+    skills_root="$TARGET_DIR/.cursor/skills"
+  fi
+
   for name in scope clear trust logic guard; do
-    copy_file "$SCRIPT_DIR/cursor/.cursor/rules/$name.mdc" "$dest_root/$name.mdc"
+    copy_file "$SCRIPT_DIR/cursor/.cursor/rules/$name.mdc" "$rules_root/$name.mdc"
+    copy_file "$SCRIPT_DIR/cursor/.cursor/skills/agentgrammar-$name/SKILL.md" "$skills_root/agentgrammar-$name/SKILL.md"
   done
-  success "Installed Cursor rules to $dest_root"
+  success "Installed Cursor rules to $rules_root"
+  success "Installed Cursor slash-command skills to $skills_root"
 }
 
 install_codex() {
@@ -138,8 +148,8 @@ if [ "${3:-}" != "" ]; then
   exit 1
 fi
 
-if [ "$GLOBAL_INSTALL" = "1" ] && [ "$tool" != "claude-code" ]; then
-  err "--global is only valid with claude-code."
+if [ "$GLOBAL_INSTALL" = "1" ] && [ "$tool" != "claude-code" ] && [ "$tool" != "cursor" ]; then
+  err "--global is only valid with claude-code or cursor."
   exit 1
 fi
 
