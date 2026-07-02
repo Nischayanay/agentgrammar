@@ -1,0 +1,22 @@
+{
+  "id": "guard",
+  "name": "GUARD",
+  "summary": "Gate multi-step, destructive, deployment, or recovery work one step at a time so one failure cannot compound.",
+  "domain": "code",
+  "category": "review",
+  "tags": ["multi-step", "migrations", "deploy", "recovery", "safety"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "agentgrammar",
+  "requires": [],
+  "prevents": "Cascading failures in multi-step runs.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use for multi-step refactors, migrations, dependency changes, deploys, bulk edits, or recovery work where one failed step can compound into larger damage.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar GUARD — gate multi-step, destructive, deployment, or recovery work one step at a time. Use when the user invokes /agentgrammar-guard."
+    }
+  }
+}

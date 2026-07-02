@@ -1,0 +1,22 @@
+{
+  "id": "logic",
+  "name": "LOGIC",
+  "summary": "Verify control flow, edge cases, and tests beyond the happy path before calling an implementation correct.",
+  "domain": "code",
+  "category": "review",
+  "tags": ["correctness", "edge-cases", "tests", "control-flow"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "agentgrammar",
+  "requires": [],
+  "prevents": "Happy-path bugs and broken invariants.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use before accepting generated code, reviews, tests, or fixes where happy-path correctness may hide edge-case, invariant, or control-flow errors.",
+      "rule_globs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar LOGIC — verify control flow, edge cases, and tests beyond the happy path. Use when the user invokes /agentgrammar-logic."
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "domains": [
+    {
+      "slug": "code",
+      "name": "Code",
+      "description": "Frameworks, writing, review, and migration skills for building software.",
+      "icon": "code",
+      "categories": [
+        { "slug": "frameworks", "name": "Frameworks", "description": "Scaffold and configure app frameworks (Next.js, FastAPI, Expo, Tailwind)." },
+        { "slug": "writing", "name": "Code Writing", "description": "Idiomatic implementation, refactors, test authoring, API design." },
+        { "slug": "review", "name": "Code Review", "description": "Operating discipline for scope, context, tools, logic, and multi-step safety." },
+        { "slug": "migration", "name": "Migration", "description": "Codebase transfer, framework upgrades, language/type migrations." }
+      ]
+    },
+    {
+      "slug": "design",
+      "name": "Design",
+      "description": "UI/UX, branding, and product design skills.",
+      "icon": "palette",
+      "categories": [
+        { "slug": "ui-ux", "name": "UI / UX", "description": "Design systems, accessibility, layout critique." },
+        { "slug": "branding", "name": "Branding", "description": "Brand voice, naming, logo briefs, color systems." },
+        { "slug": "product-ui", "name": "Product UI", "description": "Dashboard patterns, onboarding flows, common product surfaces." }
+      ]
+    },
+    {
+      "slug": "media",
+      "name": "Media",
+      "description": "Video editing and motion graphics skills.",
+      "icon": "film",
+      "categories": [
+        { "slug": "motion-graphics", "name": "Motion Graphics", "description": "After Effects motion, Lottie export, animated UI." },
+        { "slug": "video-editing", "name": "Video Editing", "description": "Cut-to-beat, color grade briefs, shorts repurposing." }
+      ]
+    }
+  ]
+}

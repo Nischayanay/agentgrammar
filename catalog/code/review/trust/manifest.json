@@ -1,0 +1,22 @@
+{
+  "id": "trust",
+  "name": "TRUST",
+  "summary": "Validate tool calls, shell commands, migrations, and deploys before execution and before trusting their output.",
+  "domain": "code",
+  "category": "review",
+  "tags": ["tools", "safety", "migrations", "deploy", "verification"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "agentgrammar",
+  "requires": [],
+  "prevents": "Tool misuse and false confidence in tool output.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use before tool calls, shell commands, API requests, migrations, deploys, or file writes where wrong parameters or stale output can damage the task.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar TRUST — validate tool calls, shell commands, migrations, and deploys before execution. Use when the user invokes /agentgrammar-trust."
+    }
+  }
+}

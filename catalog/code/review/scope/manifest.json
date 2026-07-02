@@ -1,0 +1,22 @@
+{
+  "id": "scope",
+  "name": "SCOPE",
+  "summary": "Constrain a new task before edits: deliverable, blast radius, plan, boundaries, stop condition.",
+  "domain": "code",
+  "category": "review",
+  "tags": ["scope", "planning", "guardrails", "refactor", "bugfix"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "agentgrammar",
+  "requires": [],
+  "prevents": "Scope creep and unrelated edits.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when a new task, feature, bugfix, or refactor starts and the agent must define the deliverable, allowed touch points, plan, and stop condition before editing.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar SCOPE — constrain a new task before edits (deliverable, blast radius, plan, boundaries). Use when the user invokes /agentgrammar-scope or starts a feature, bugfix, or refactor."
+    }
+  }
+}

@@ -242,35 +242,51 @@ Use guard for this deploy. Gate each step and stop on the first failed check.
 
 ## Repository Layout
 
+Skills are authored once in `catalog/` and rendered into every IDE format by a build step. You never
+hand-edit per-IDE files anymore.
+
 ```text
 agentgrammar/
 ├── README.md
 ├── LICENSE
 ├── CONTRIBUTING.md
-├── install.sh
-├── claude-code/.claude/skills/
-│   ├── scope/SKILL.md
-│   ├── clear/SKILL.md
-│   ├── trust/SKILL.md
-│   ├── logic/SKILL.md
-│   └── guard/SKILL.md
-├── cursor/.cursor/
-│   ├── rules/
-│   │   ├── scope.mdc
-│   │   ├── clear.mdc
-│   │   ├── trust.mdc
-│   │   ├── logic.mdc
-│   │   └── guard.mdc
-│   └── skills/
-│       ├── agentgrammar-scope/SKILL.md
-│       ├── agentgrammar-clear/SKILL.md
-│       ├── agentgrammar-trust/SKILL.md
-│       ├── agentgrammar-logic/SKILL.md
-│       └── agentgrammar-guard/SKILL.md
-├── codex/AGENTS.md
-├── universal/agentgrammar.md
-└── .gitignore
+├── install.sh                 # installs the rendered payloads from dist/
+├── package.json               # `npm run build`
+├── scripts/
+│   └── render.mjs             # catalog/ -> dist/ (all IDE formats + registry catalog)
+├── catalog/                   # SINGLE SOURCE OF TRUTH
+│   ├── taxonomy.json          # domains -> categories
+│   └── code/review/
+│       ├── scope/{manifest.json, SKILL.md}
+│       ├── clear/{manifest.json, SKILL.md}
+│       ├── trust/{manifest.json, SKILL.md}
+│       ├── logic/{manifest.json, SKILL.md}
+│       └── guard/{manifest.json, SKILL.md}
+├── docs/                      # product plan, PRDs, branding, marketing, roadmap
+└── dist/                      # GENERATED (git-ignored) — do not edit by hand
+    ├── claude-code/.claude/skills/<id>/SKILL.md
+    ├── cursor/.cursor/rules/<id>.mdc
+    ├── cursor/.cursor/skills/agentgrammar-<id>/SKILL.md
+    ├── codex/AGENTS.md
+    ├── universal/agentgrammar.md
+    └── registry/catalog.json  # machine-readable catalog for the API + MCP server
 ```
+
+## Authoring & Build
+
+Each skill is a folder in `catalog/<domain>/<category>/<id>/` with:
+
+- `manifest.json` — catalog metadata (id, name, summary, domain, category, tags, IDE targets, version).
+- `SKILL.md` — the canonical body (Claude Code format). Cursor, Codex, and universal outputs are
+  generated from it.
+
+Build all IDE payloads and the registry catalog:
+
+```bash
+npm run build     # or: node scripts/render.mjs
+```
+
+The installer runs this automatically if `dist/` is missing.
 
 ## License
 
