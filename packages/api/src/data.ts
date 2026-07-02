@@ -7,10 +7,15 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-// src/ -> package root -> data/. Works both from src (tsx) and dist builds one level deeper.
+// The snapshot ships in `data/` next to the package. Resolve it across the environments
+// we run in: local tsx (cwd = packages/api), and Vercel serverless (cwd = project root,
+// function traced under the deployment root). Check the likely roots in order.
 const CANDIDATES = [
+  join(process.cwd(), "data"),
   join(HERE, "..", "data"),
   join(HERE, "..", "..", "data"),
+  join(HERE, "..", "..", "..", "data"),
+  join(HERE, "data"),
 ];
 export const DATA_DIR =
   CANDIDATES.find((p) => existsSync(join(p, "registry", "catalog.json"))) ?? CANDIDATES[0];
