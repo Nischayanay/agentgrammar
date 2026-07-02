@@ -1,0 +1,26 @@
+{
+  "name": "@agentgrammar/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "agentgrammar registry API — serves the curated catalog to the MCP server and web catalog.",
+  "scripts": {
+    "sync-data": "node ../../scripts/sync-api-data.mjs",
+    "dev": "npm run sync-data && tsx watch src/server.ts",
+    "start": "npm run sync-data && tsx src/server.ts",
+    "build": "npm run sync-data"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@hono/node-server": "^1.13.7",
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

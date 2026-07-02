@@ -1,0 +1,41 @@
+{
+  "name": "agentgrammar",
+  "version": "1.0.0",
+  "description": "Install curated agentgrammar skills into Claude Code, Cursor, and Codex on demand via MCP.",
+  "type": "module",
+  "bin": {
+    "agentgrammar": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "claude-code",
+    "cursor",
+    "codex",
+    "skills",
+    "agentgrammar"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "publisher": "agentgrammar",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0"
+  }
+}

@@ -147,6 +147,15 @@ for (const s of skills) {
     payloads["cursor"] = [ruleRel, skillRel];
   }
 
+  if (s.manifest.ide_targets.includes("codex")) {
+    // Per-skill block for the MCP install path (appended/merged into AGENTS.md client-side).
+    // The aggregate dist/codex/AGENTS.md below is still produced for the install.sh path.
+    const block = `<!-- agentgrammar:${id} v${s.manifest.version} -->\n${renderCodexBlock(s)}`;
+    const rel = `codex/skills/${id}.md`;
+    write(join(DIST, rel), block);
+    payloads["codex"] = [rel];
+  }
+
   registrySkills.push({
     id,
     name: s.manifest.name,
