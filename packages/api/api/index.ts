@@ -1,9 +1,13 @@
-// Vercel serverless entry. Hono ships a Vercel adapter that maps the
-// Web Fetch handler onto Vercel's Node runtime.
+// Vercel serverless entry (Node runtime).
+//
+// Vercel's Node runtime invokes the function with Node-style (req, res) arguments.
+// hono/vercel's `handle` returns a Web-style (Request) => Response handler, which never
+// writes to `res` under this runtime — the request hangs. `getRequestListener` from
+// @hono/node-server adapts the Hono fetch handler into a proper Node (req, res) listener.
 
-import { handle } from "hono/vercel";
+import { getRequestListener } from "@hono/node-server";
 import app from "../src/app.js";
 
 export const config = { runtime: "nodejs" };
 
-export default handle(app);
+export default getRequestListener(app.fetch);
