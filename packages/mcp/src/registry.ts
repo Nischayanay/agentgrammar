@@ -1,6 +1,8 @@
 // HTTP client for the agentgrammar registry API.
 
-const DEFAULT_REGISTRY = "https://api.agentgrammar.dev";
+// Live production registry. Swap for a custom domain (e.g. https://api.agentgrammar.dev)
+// once it's configured; users can always override with AGENTGRAMMAR_REGISTRY_URL.
+const DEFAULT_REGISTRY = "https://agentgrammar.vercel.app";
 
 export function registryUrl(): string {
   return (process.env.AGENTGRAMMAR_REGISTRY_URL ?? DEFAULT_REGISTRY).replace(/\/+$/, "");
