@@ -1,6 +1,6 @@
 {
   "name": "agentgrammar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Install curated agentgrammar skills into Claude Code, Cursor, and Codex on demand via MCP.",
   "type": "module",
   "bin": {

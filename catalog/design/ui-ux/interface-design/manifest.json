@@ -1,0 +1,22 @@
+{
+  "id": "interface-design",
+  "name": "INTERFACE",
+  "summary": "Design and critique UI against enforceable rules: accessibility, touch targets, spacing, type scale, semantic color, motion, and forms.",
+  "domain": "design",
+  "category": "ui-ux",
+  "tags": ["ui", "ux", "design-system", "accessibility", "layout", "tailwind"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "agentgrammar",
+  "requires": [],
+  "prevents": "Inaccessible, inconsistent, guess-built interfaces.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when a task changes how a feature looks, feels, moves, or is interacted with — building or reviewing UI, layout, components, color, type, or motion. Skip for pure backend, API, DB, or DevOps work.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar INTERFACE — design and critique UI against enforceable rules (accessibility, touch targets, spacing, type scale, semantic color, motion, forms). Use when the user invokes /agentgrammar-interface-design or builds/reviews any visual interface."
+    }
+  }
+}
