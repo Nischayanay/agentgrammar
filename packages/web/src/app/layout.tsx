@@ -4,41 +4,37 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
-const TITLE = "agentgrammar — the curated skill library your AI agent installs on demand";
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+const TITLE = "agentgrammar — curated skills for AI coding agents";
 const DESCRIPTION =
-  "A curated, security-verified library of skills for AI coding agents. One tool, every IDE — Claude Code, Cursor, Codex. Your agent installs the exact skill the task needs.";
+  "A human-reviewed library of skills for Claude Code, Cursor, and Codex. One MCP server, every IDE. Your agent installs exactly what the task needs.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://agentgrammar.dev"),
-  title: {
-    default: TITLE,
-    template: "%s · agentgrammar",
-  },
+  title: { default: TITLE, template: "%s · agentgrammar" },
   description: DESCRIPTION,
   keywords: [
-    "agentgrammar",
-    "AI coding agent skills",
-    "Claude Code skills",
-    "Cursor skills",
-    "Codex skills",
-    "MCP server",
-    "agent skills marketplace",
+    "agentgrammar", "AI coding agent skills", "Claude Code skills",
+    "Cursor skills", "Codex skills", "MCP server", "agent skills catalog",
   ],
   openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: "https://agentgrammar.dev",
-    siteName: "agentgrammar",
-    type: "website",
+    title: TITLE, description: DESCRIPTION,
+    url: "https://agentgrammar.dev", siteName: "agentgrammar", type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

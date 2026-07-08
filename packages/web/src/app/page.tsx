@@ -13,147 +13,228 @@ export default async function HomePage() {
   const [domains, skills] = await Promise.all([getDomains(), getSkills()]);
   const weights = weightsById();
   const featured = skills.slice(0, 6);
+  const totalSkills = skills.length;
+  const totalDomains = domains.length;
 
   return (
     <div className="container-page">
-      {/* Hero */}
-      <section className="grid gap-10 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
-        <div className="space-y-6">
-          <span className="chip border-accent/40 text-accent-soft">
-            One tool · every AI IDE
-          </span>
-          <h1 className="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            The skill library your AI agent{" "}
-            <span className="text-accent-soft">installs on demand.</span>
+
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+        <div className="space-y-7 max-w-xl">
+          {/* Eyebrow */}
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-accent/50" />
+            <span className="font-mono text-xs text-accent-soft tracking-wide">
+              one tool · every AI IDE
+            </span>
+          </div>
+
+          <h1 className="text-4xl font-semibold tracking-tighter text-ink leading-[1.08] sm:text-5xl">
+            The skill library<br />
+            your agent installs<br />
+            <span className="text-accent-soft">on demand.</span>
           </h1>
-          <p className="max-w-xl text-lg text-muted">
-            Stop copy-pasting prompts. agentgrammar is a curated, security-verified
-            library of skills — design, code, review, migration, media — that your
-            coding agent pulls in exactly when the task needs it. Claude Code, Cursor,
-            Codex, one snippet.
+
+          <p className="text-base text-muted leading-relaxed">
+            agentgrammar is a curated, human-reviewed library of skills for AI coding
+            agents. Design, code, review, migration, media — your agent pulls in exactly
+            what the task needs. Claude Code, Cursor, Codex — one snippet.
           </p>
+
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div className="w-full sm:w-auto sm:min-w-80">
+            <div className="sm:min-w-80">
               <CodeSnippet code={NPX} />
             </div>
-            <Link href="/skills" className="btn-primary">
-              Browse the catalog →
+            <Link href="/skills" className="btn-primary shrink-0">
+              Browse catalog →
             </Link>
           </div>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-faint">
-            <span>✓ Human-reviewed</span>
-            <span>✓ No prompt injection</span>
-            <span>✓ Free to start</span>
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 font-mono text-xs text-faint">
+            <span className="flex items-center gap-1.5">
+              <span className="text-signal">✓</span> human-reviewed
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-signal">✓</span> no prompt injection
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-signal">✓</span> free to start
+            </span>
           </div>
         </div>
-        <HeroDemo />
+
+        <div className="lg:pl-6">
+          <HeroDemo />
+        </div>
       </section>
 
-      {/* Trust strip — the wedge */}
-      <section className="grid gap-4 border-y border-border py-10 sm:grid-cols-3">
-        <TrustItem
-          title="Curated, not scraped"
-          body="Every skill is human-reviewed and rendered from a single source. Recent audits found prompt injection in 36% of open skills — none of ours."
-        />
-        <TrustItem
-          title="Context-weight aware"
-          body="Each skill shows how much of your context window it costs, so your agent stays sharp instead of drowning in 20 half-read skills."
-        />
-        <TrustItem
-          title="One protocol, three IDEs"
-          body="Built on MCP — the one protocol Claude Code, Cursor, and Codex share. Install once, works everywhere."
-        />
+      {/* ── Stats bar ─────────────────────────────────────────── */}
+      <section className="grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-border bg-border">
+        {[
+          { n: totalSkills,  label: "skills" },
+          { n: totalDomains, label: "domains" },
+          { n: 3,            label: "IDEs supported" },
+        ].map(({ n, label }) => (
+          <div key={label} className="bg-surface px-6 py-5 text-center">
+            <p className="stat-number">{n}</p>
+            <p className="stat-label mt-1">{label}</p>
+          </div>
+        ))}
       </section>
 
-      {/* Domains */}
+      {/* ── Trust strip ───────────────────────────────────────── */}
       <section className="py-16">
+        <div className="grid gap-4 sm:grid-cols-3">
+          <TrustCard
+            no="01"
+            title="Curated, not scraped"
+            body="Every skill is human-reviewed and rendered from a single canonical source. 36% of open skills have prompt injection. None of ours do."
+          />
+          <TrustCard
+            no="02"
+            title="Context-weight aware"
+            body="Each skill shows its token cost before your agent loads it, so sessions stay sharp instead of drowning in half-read instructions."
+          />
+          <TrustCard
+            no="03"
+            title="One protocol, three IDEs"
+            body="Built on MCP — the one protocol Claude Code, Cursor, and Codex share. Configure once, works everywhere."
+          />
+        </div>
+      </section>
+
+      {/* ── Domains ───────────────────────────────────────────── */}
+      <section className="py-4 pb-16">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="text-2xl font-semibold text-ink">Domains</h2>
-            <p className="mt-1 text-muted">Expert skills across the work you actually do.</p>
+            <p className="overline mb-2">taxonomy</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">Domains</h2>
           </div>
-          <Link href="/domains" className="text-sm text-accent-soft hover:underline">
-            All domains →
+          <Link href="/domains" className="btn-text font-mono text-xs">
+            all domains →
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3">
           {domains.map((d) => {
             const count = d.categories.reduce((n, c) => n + c.skill_ids.length, 0);
+            const accent = domainAccent(d.slug);
             return (
               <Link
                 key={d.slug}
                 href={`/domains#${d.slug}`}
-                className="card group p-6 transition-colors hover:border-accent/50"
+                className="card-hover group p-5"
               >
-                <div className={`text-sm font-medium ${domainAccent(d.slug)}`}>{d.name}</div>
-                <p className="mt-2 text-sm text-muted">{d.description}</p>
-                <p className="mt-4 text-xs text-faint">
-                  {count} skill{count === 1 ? "" : "s"} ·{" "}
-                  {d.categories.length} categories
+                <div className="mb-3 flex items-center justify-between">
+                  <span className={`font-mono text-xs font-medium ${accent}`}>
+                    {d.slug}
+                  </span>
+                  <span className="font-mono text-xs text-ghost">
+                    {count} skill{count !== 1 ? "s" : ""}
+                  </span>
+                </div>
+                <p className="text-sm font-medium text-ink group-hover:text-accent-soft transition-colors">
+                  {d.name}
                 </p>
+                <p className="mt-1.5 text-xs text-muted line-clamp-2">{d.description}</p>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {d.categories.slice(0, 4).map((c) => (
+                    <span key={c.slug} className="chip">{c.slug}</span>
+                  ))}
+                </div>
               </Link>
             );
           })}
         </div>
       </section>
 
-      {/* Featured skills */}
-      <section className="pb-8">
+      {/* ── Featured skills ───────────────────────────────────── */}
+      <section className="pb-16">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="text-2xl font-semibold text-ink">Featured skills</h2>
-            <p className="mt-1 text-muted">A taste of the catalog. Every one verified.</p>
+            <p className="overline mb-2">catalog</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">Featured skills</h2>
           </div>
-          <Link href="/skills" className="text-sm text-accent-soft hover:underline">
-            Browse all →
+          <Link href="/skills" className="btn-text font-mono text-xs">
+            browse all →
           </Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((s) => (
-            <SkillCard key={s.id} skill={s} weight={weights[s.id]} />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((s, i) => (
+            <SkillCard key={s.id} skill={s} weight={weights[s.id]} index={i} />
           ))}
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="py-16">
-        <h2 className="text-2xl font-semibold text-ink">How it works</h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          <Step n={1} title="Add the MCP server" body="Point your IDE at agentgrammar once with npx. Claude Code, Cursor, and Codex all speak MCP." />
-          <Step n={2} title="Ask in plain language" body="“use agentgrammar to design this page.” Your agent searches the curated catalog and picks the right skill." />
-          <Step n={3} title="The skill installs itself" body="The agent writes the skill to the correct location for your IDE and applies it — no copy-paste, no lost prompts." />
+      {/* ── How it works ──────────────────────────────────────── */}
+      <section className="py-4 pb-24">
+        <div className="mb-8">
+          <p className="overline mb-2">workflow</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">How it works</h2>
         </div>
-        <div className="mt-8 max-w-xl">
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            {
+              n: "01",
+              title: "Add the MCP server",
+              body: "One line in your IDE config. Claude Code, Cursor, and Codex all speak MCP — paste once, done.",
+            },
+            {
+              n: "02",
+              title: "Ask in plain language",
+              body: "\"use agentgrammar to design this page.\" Your agent searches the catalog and picks the right skill.",
+            },
+            {
+              n: "03",
+              title: "Skill installs itself",
+              body: "The agent writes to the correct IDE location, verifies the hash, and applies the skill — no copy-paste.",
+            },
+          ].map(({ n, title, body }) => (
+            <div key={n} className="card p-5 space-y-3">
+              <span className="font-mono text-xs text-faint">{n}</span>
+              <h3 className="font-medium text-ink">{title}</h3>
+              <p className="text-sm text-muted leading-relaxed">{body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 max-w-xl">
           <CodeSnippet
-            caption="claude / cursor / codex"
-            code={'use agentgrammar to review this migration before I run it'}
+            caption="example prompt · claude / cursor / codex"
+            code="use agentgrammar to review this migration before I run it"
           />
         </div>
       </section>
+
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="mb-24 rounded-xl border border-accent/20 bg-accent/5 px-8 py-10 text-center">
+        <p className="overline mb-3">get started</p>
+        <h2 className="text-2xl font-semibold tracking-tight text-ink">
+          Ready to give your agent expert-level skills?
+        </h2>
+        <p className="mt-3 text-muted mx-auto max-w-md">
+          One snippet. 19 curated skills across code, design, and media.
+          Your agent installs exactly what the task needs, right when it needs it.
+        </p>
+        <div className="mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="sm:min-w-72">
+            <CodeSnippet code={NPX} />
+          </div>
+          <Link href="/skills" className="btn-ghost shrink-0">Browse catalog</Link>
+        </div>
+      </section>
+
     </div>
   );
 }
 
-function TrustItem({ title, body }: { title: string; body: string }) {
+function TrustCard({ no, title, body }: { no: string; title: string; body: string }) {
   return (
-    <div className="space-y-2 px-1">
-      <h3 className="flex items-center gap-2 font-medium text-ink">
-        <span className="text-signal" aria-hidden>✓</span>
-        {title}
-      </h3>
-      <p className="text-sm text-muted">{body}</p>
-    </div>
-  );
-}
-
-function Step({ n, title, body }: { n: number; title: string; body: string }) {
-  return (
-    <div className="card p-6">
-      <div className="grid h-8 w-8 place-items-center rounded-lg border border-accent/40 bg-accent/10 font-mono text-sm text-accent-soft">
-        {n}
-      </div>
-      <h3 className="mt-4 font-medium text-ink">{title}</h3>
-      <p className="mt-2 text-sm text-muted">{body}</p>
+    <div className="card p-5 space-y-3">
+      <span className="font-mono text-xs text-faint">{no}</span>
+      <h3 className="font-medium text-ink">{title}</h3>
+      <p className="text-sm text-muted leading-relaxed">{body}</p>
     </div>
   );
 }

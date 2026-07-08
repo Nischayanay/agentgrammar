@@ -7,10 +7,14 @@
       "description": "Frameworks, writing, review, and migration skills for building software.",
       "icon": "code",
       "categories": [
-        { "slug": "frameworks", "name": "Frameworks", "description": "Scaffold and configure app frameworks (Next.js, FastAPI, Expo, Tailwind)." },
-        { "slug": "writing", "name": "Code Writing", "description": "Idiomatic implementation, refactors, test authoring, API design." },
+        { "slug": "frameworks", "name": "Frameworks", "description": "Scaffold, configure, and optimize app frameworks (Next.js, React, FastAPI, Expo, Tailwind, Vercel)." },
+        { "slug": "writing", "name": "Code Writing", "description": "Idiomatic implementation, refactors, test authoring, API design, documentation." },
         { "slug": "review", "name": "Code Review", "description": "Operating discipline for scope, context, tools, logic, and multi-step safety." },
-        { "slug": "migration", "name": "Migration", "description": "Codebase transfer, framework upgrades, language/type migrations." }
+        { "slug": "migration", "name": "Migration", "description": "Codebase transfer, framework upgrades, language/type migrations." },
+        { "slug": "testing", "name": "Testing", "description": "Browser automation, end-to-end testing, and verification of live page behavior." },
+        { "slug": "workflow", "name": "Workflow", "description": "Alignment, planning, grilling, handoff, and iteration loops for engineering tasks." },
+        { "slug": "architecture", "name": "Architecture", "description": "Module design, codebase structure, deep-module patterns, and refactoring strategy." },
+        { "slug": "debugging", "name": "Debugging", "description": "Disciplined diagnosis loops for hard bugs, performance regressions, and failure analysis." }
       ]
     },
     {
@@ -19,7 +23,7 @@
       "description": "UI/UX, branding, and product design skills.",
       "icon": "palette",
       "categories": [
-        { "slug": "ui-ux", "name": "UI / UX", "description": "Design systems, accessibility, layout critique." },
+        { "slug": "ui-ux", "name": "UI / UX", "description": "Design systems, accessibility, layout critique, web design guidelines." },
         { "slug": "branding", "name": "Branding", "description": "Brand voice, naming, logo briefs, color systems." },
         { "slug": "product-ui", "name": "Product UI", "description": "Dashboard patterns, onboarding flows, common product surfaces." }
       ]
@@ -27,9 +31,10 @@
     {
       "slug": "media",
       "name": "Media",
-      "description": "Video editing and motion graphics skills.",
+      "description": "Video production, motion graphics, and programmatic rendering skills.",
       "icon": "film",
       "categories": [
+        { "slug": "video", "name": "Video Production", "description": "HTML-to-video rendering, product launches, explainers, motion graphics, and programmatic video pipelines." },
         { "slug": "motion-graphics", "name": "Motion Graphics", "description": "After Effects motion, Lottie export, animated UI." },
         { "slug": "video-editing", "name": "Video Editing", "description": "Cut-to-beat, color grade briefs, shorts repurposing." }
       ]

@@ -1,0 +1,23 @@
+{
+  "id": "vercel-web-design",
+  "name": "WEB DESIGN AUDIT",
+  "summary": "100+ rule web interface audit from Vercel Engineering: accessibility, focus states, forms, animation, typography, images, performance, navigation, dark mode, touch interaction, and i18n.",
+  "domain": "design",
+  "category": "ui-ux",
+  "tags": ["accessibility", "forms", "animation", "typography", "performance", "dark-mode", "i18n", "audit", "vercel"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/vercel-labs/agent-skills",
+  "requires": [],
+  "prevents": "Inaccessible interfaces, broken keyboard navigation, missing focus states, layout-thrashing animations, and broken i18n formatting.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when reviewing UI code, auditing accessibility, checking design quality, or verifying any web interface against engineering best practices.",
+      "rule_globs": ["**/*.tsx", "**/*.jsx", "**/*.html", "**/*.css"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar WEB DESIGN AUDIT — 100+ Vercel rules across accessibility, forms, animation, typography, images, performance, dark mode, touch, and i18n. Use when the user invokes /agentgrammar-vercel-web-design or asks to review UI."
+    }
+  }
+}

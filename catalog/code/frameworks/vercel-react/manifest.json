@@ -1,0 +1,23 @@
+{
+  "id": "vercel-react",
+  "name": "REACT BEST PRACTICES",
+  "summary": "40+ React and Next.js performance rules from Vercel Engineering across 8 categories: eliminate waterfalls, optimise bundles, server components, client data fetching, re-render prevention, rendering performance, and micro-optimisations.",
+  "domain": "code",
+  "category": "frameworks",
+  "tags": ["react", "next.js", "performance", "server-components", "bundle-size", "waterfalls", "vercel"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/vercel-labs/agent-skills",
+  "requires": [],
+  "prevents": "Waterfall data fetching, unnecessary client-side bundles, missed server-component opportunities, and preventable re-renders.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when writing React components, Next.js pages, data fetching code, or reviewing any React/Next.js code for performance issues.",
+      "rule_globs": ["**/*.tsx", "**/*.jsx", "**/app/**/*.ts", "**/pages/**/*.ts"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar REACT BEST PRACTICES — 40+ Vercel Engineering rules across waterfalls, bundle size, server performance, client fetching, re-renders. Use when the user invokes /agentgrammar-vercel-react or writes React/Next.js code."
+    }
+  }
+}

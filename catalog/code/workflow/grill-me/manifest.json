@@ -1,0 +1,23 @@
+{
+  "id": "grill-me",
+  "name": "GRILL",
+  "summary": "Relentless alignment interview before any task: surfaces every ambiguity, decision branch, and unstated assumption before a single line of code is written.",
+  "domain": "code",
+  "category": "workflow",
+  "tags": ["alignment", "planning", "requirements", "interviews", "clarity", "prd"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/mattpocock/skills",
+  "requires": [],
+  "prevents": "Misaligned output — building something technically correct that isn't what the user actually wanted.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use at the start of any non-trivial task, feature, or design decision where the requirement is ambiguous, broad, or has unstated assumptions.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar GRILL — relentless alignment interview that resolves every decision branch before coding starts. Use when the user invokes /agentgrammar-grill-me or starts a task with unclear requirements."
+    }
+  }
+}

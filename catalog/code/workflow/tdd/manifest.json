@@ -1,0 +1,23 @@
+{
+  "id": "tdd",
+  "name": "TDD",
+  "summary": "Red-green-refactor loop for features and bugfixes: write a failing test first, make it pass with the minimum change, then refactor — one vertical slice at a time.",
+  "domain": "code",
+  "category": "workflow",
+  "tags": ["testing", "tdd", "red-green-refactor", "quality", "feedback-loops", "correctness"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/mattpocock/skills",
+  "requires": [],
+  "prevents": "Flying-blind implementation — code written without a feedback mechanism, leading to hard-to-verify correctness.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when implementing a new feature, fixing a bug, or adding behaviour that needs a verifiable correctness signal via automated tests.",
+      "rule_globs": ["**/*.spec.ts", "**/*.test.ts", "**/*.spec.js", "**/*.test.js", "**/*.test.py", "**/*.spec.py"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar TDD — red-green-refactor loop for any feature or bugfix. Write failing test first, minimum passing code second, refactor third. Use when the user invokes /agentgrammar-tdd."
+    }
+  }
+}

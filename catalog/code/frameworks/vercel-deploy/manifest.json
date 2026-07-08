@@ -1,0 +1,23 @@
+{
+  "id": "vercel-deploy",
+  "name": "VERCEL DEPLOY",
+  "summary": "Audit, optimise, and deploy Vercel projects: cost and performance audits via live metrics, route-level investigation, caching strategy, function usage, and ISR/middleware/image optimisation.",
+  "domain": "code",
+  "category": "frameworks",
+  "tags": ["vercel", "deploy", "performance", "cost", "caching", "functions", "isr", "optimisation"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/vercel-labs/agent-skills",
+  "requires": [],
+  "prevents": "Runaway Vercel costs, slow routes, over-provisioned functions, and missed caching opportunities that compound on every deployment.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when deploying to Vercel, optimising a live Vercel project, investigating slow or expensive routes, or reducing function invocations and build minutes.",
+      "rule_globs": ["**/vercel.json", "**/.vercel/**", "**/next.config.*"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar VERCEL DEPLOY — metrics-first audit and deploy workflow for Vercel: cost, performance, caching, ISR, middleware, images. Use when the user invokes /agentgrammar-vercel-deploy or works on a Vercel project."
+    }
+  }
+}

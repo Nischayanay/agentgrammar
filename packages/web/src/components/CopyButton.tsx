@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export function CopyButton({
   value,
-  label = "Copy",
+  label = "copy",
   className = "",
 }: {
   value: string;
@@ -17,7 +17,6 @@ export function CopyButton({
     try {
       await navigator.clipboard.writeText(value);
       setCopied(true);
-      // Feedback on every action (INTERFACE rule); reset after a beat.
       setTimeout(() => setCopied(false), 1600);
     } catch {
       setCopied(false);
@@ -28,11 +27,11 @@ export function CopyButton({
     <button
       type="button"
       onClick={copy}
-      aria-label={copied ? "Copied to clipboard" : `Copy: ${label}`}
-      className={`inline-flex items-center gap-1.5 rounded-md border border-border bg-raised px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:text-ink ${className}`}
+      aria-label={copied ? "Copied" : `Copy ${label}`}
+      className={`inline-flex items-center gap-1.5 rounded border border-border bg-overlay px-2 py-1 font-mono text-2xs text-muted transition-colors hover:border-border-strong hover:text-ink ${className}`}
     >
       {copied ? (
-        <span className="text-signal">✓ Copied</span>
+        <span className="text-signal">✓ copied</span>
       ) : (
         <span>{label}</span>
       )}

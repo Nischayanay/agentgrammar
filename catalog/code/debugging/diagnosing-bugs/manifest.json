@@ -1,0 +1,23 @@
+{
+  "id": "diagnosing-bugs",
+  "name": "DIAGNOSE",
+  "summary": "Disciplined diagnosis loop for hard bugs and performance regressions: reproduce, minimise, hypothesise, instrument, fix, regression-test — in that order, never skipping ahead.",
+  "domain": "code",
+  "category": "debugging",
+  "tags": ["debugging", "bugs", "diagnosis", "performance", "regression", "root-cause"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/mattpocock/skills",
+  "requires": [],
+  "prevents": "Guessing fixes — patching symptoms without understanding root cause, creating new bugs while masking the original.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when facing a hard bug, unexpected behaviour, performance regression, or any failure where the cause is not immediately obvious.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar DIAGNOSE — structured reproduce → minimise → hypothesise → instrument → fix → regression-test loop. Never skip ahead. Use when the user invokes /agentgrammar-diagnosing-bugs or is stuck on a hard bug."
+    }
+  }
+}

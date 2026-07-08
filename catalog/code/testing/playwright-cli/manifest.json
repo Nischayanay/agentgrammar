@@ -1,0 +1,24 @@
+{
+  "id": "playwright-cli",
+  "name": "PLAYWRIGHT",
+  "summary": "Token-efficient browser automation for coding agents via playwright-cli: navigate, interact, screenshot, assert, and debug live pages without bloating the context window.",
+  "domain": "code",
+  "category": "testing",
+  "tags": ["testing", "browser", "playwright", "e2e", "automation", "screenshot", "cli"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/microsoft/playwright-cli",
+  "docs": "https://playwright.dev/docs/getting-started-cli",
+  "requires": [],
+  "prevents": "Broken UI flows that only show up in a live browser, missed regressions from never running end-to-end tests.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when a task requires browser interaction, end-to-end testing, screenshot capture, or verifying live page behavior with playwright-cli.",
+      "rule_globs": ["**/*.spec.ts", "**/*.test.ts", "**/*.e2e.ts", "**/*.spec.js"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar PLAYWRIGHT — token-efficient browser automation via playwright-cli. Navigate, interact, screenshot, assert, and debug live pages. Use when the user invokes /agentgrammar-playwright-cli or asks for browser testing."
+    }
+  }
+}

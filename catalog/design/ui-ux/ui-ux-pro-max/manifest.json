@@ -1,0 +1,24 @@
+{
+  "id": "ui-ux-pro-max",
+  "name": "UI/UX PRO",
+  "summary": "Generate a complete, industry-tailored design system in seconds: 67 UI styles, 161 product-type reasoning rules, 57 font pairings, 161 color palettes, and stack-specific guidelines for 22 frameworks.",
+  "domain": "design",
+  "category": "ui-ux",
+  "tags": ["design-system", "reasoning", "tokens", "typography", "color", "tailwind", "saas", "landing-page"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "docs": "https://ui-ux-pro-max-skill.nextlevelbuilder.io/",
+  "requires": [],
+  "prevents": "Generic AI-default UI, mismatched design language for the product type, manually hunting for color palettes and font pairings.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when building any product UI — it matches the product type (SaaS, fintech, wellness, e-commerce, etc.) to the right style, colors, typography, and anti-patterns before any code is written.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar UI/UX PRO — 161-rule reasoning engine that generates a complete, industry-matched design system (style, colors, fonts, anti-patterns, checklist) for any product type. Use when the user invokes /agentgrammar-ui-ux-pro-max or asks for UI on a new product."
+    }
+  }
+}

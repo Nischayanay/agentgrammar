@@ -1,43 +1,56 @@
 import Link from "next/link";
 import type { SkillMeta, ContextWeight } from "@/lib/api";
-import { domainAccent } from "@/lib/api";
-import { VerifiedBadge, ContextWeightChip, IdeChips } from "./Badges";
+import { ContextWeightChip, IdeChips, DomainChip, VerifiedBadge } from "./Badges";
 
 export function SkillCard({
   skill,
   weight,
+  index,
 }: {
   skill: SkillMeta;
   weight?: ContextWeight;
+  index?: number;
 }) {
   return (
     <Link
       href={`/skills/${skill.id}`}
-      className="card group flex flex-col gap-3 p-5 transition-colors duration-200 hover:border-accent/50"
+      className="card-hover group flex flex-col gap-0 overflow-hidden"
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-sm font-semibold text-ink">{skill.name}</span>
-            <span className={`text-xs font-medium ${domainAccent(skill.domain)}`}>
-              {skill.domain}/{skill.category}
+      {/* Top strip */}
+      <div className="flex items-center justify-between border-b border-border/60 px-4 py-2.5">
+        <DomainChip domain={skill.domain} category={skill.category} />
+        <div className="flex items-center gap-2">
+          {index !== undefined && (
+            <span className="font-mono text-2xs text-ghost tabular-nums">
+              #{String(index + 1).padStart(2, "0")}
             </span>
-          </div>
+          )}
+          <VerifiedBadge compact />
         </div>
-        <VerifiedBadge compact />
       </div>
 
-      <p className="text-sm leading-relaxed text-muted">{skill.summary}</p>
+      {/* Body */}
+      <div className="flex flex-1 flex-col gap-3 px-4 py-4">
+        <div>
+          <h3 className="font-mono text-sm font-semibold tracking-tight text-ink group-hover:text-accent-soft transition-colors">
+            {skill.name}
+          </h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-muted line-clamp-2">
+            {skill.summary}
+          </p>
+        </div>
 
-      {skill.prevents ? (
-        <p className="text-xs text-faint">
-          <span className="text-danger/80">Prevents:</span> {skill.prevents}
-        </p>
-      ) : null}
+        {skill.prevents && (
+          <p className="font-mono text-xs text-faint border-l-2 border-danger/30 pl-2.5">
+            prevents: {skill.prevents}
+          </p>
+        )}
+      </div>
 
-      <div className="mt-auto flex flex-wrap items-center gap-2 pt-2">
-        {weight ? <ContextWeightChip weight={weight} /> : null}
+      {/* Footer strip */}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/60 px-4 py-2.5">
         <IdeChips ides={skill.ide_targets} />
+        {weight && <ContextWeightChip weight={weight} />}
       </div>
     </Link>
   );

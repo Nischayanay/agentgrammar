@@ -1,0 +1,23 @@
+{
+  "id": "vercel-writing",
+  "name": "WRITING GUIDELINES",
+  "summary": "80+ rule technical writing and docs audit from Vercel: voice, structure, content types, headings, lists, code samples, placeholders, typography, and AI workflow accountability.",
+  "domain": "code",
+  "category": "writing",
+  "tags": ["documentation", "writing", "docs", "voice", "style", "prose", "technical-writing", "vercel"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/vercel-labs/agent-skills",
+  "requires": [],
+  "prevents": "Vague, passive, filler-heavy documentation — banned words like 'easy/simple/quick', missing TL;DR opens, mismatched content type tone, and broken code sample conventions.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when writing or reviewing documentation, READMEs, changelogs, how-to guides, reference pages, or any technical prose.",
+      "rule_globs": ["**/*.md", "**/*.mdx", "**/docs/**"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar WRITING GUIDELINES — 80+ Vercel rules for technical writing: voice, structure, content types, headings, code samples, typography. Use when the user invokes /agentgrammar-vercel-writing or asks to write or review docs."
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "codebase-design",
+  "name": "ARCHITECT",
+  "summary": "Deep-module architecture discipline: design each module to expose a small interface over a large implementation, place it at a clean seam, and make it testable through that interface.",
+  "domain": "code",
+  "category": "architecture",
+  "tags": ["architecture", "modules", "design", "refactoring", "complexity", "deep-modules", "seams"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/mattpocock/skills",
+  "requires": [],
+  "prevents": "Ball-of-mud codebases — shallow modules, leaking internals, and AI-accelerated entropy that makes every change risky.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when designing a new module, refactoring a complex file, splitting a monolith, or reviewing whether a codebase's structure is preventing safe change.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar ARCHITECT — deep-module design discipline: small interface, large implementation, clean seam, testable through that interface. Use when the user invokes /agentgrammar-codebase-design or works on module structure."
+    }
+  }
+}

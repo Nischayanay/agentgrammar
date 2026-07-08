@@ -6,8 +6,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Domains",
-  description:
-    "The agentgrammar taxonomy: design, code, and media skills for AI coding agents, organized by category.",
+  description: "The agentgrammar taxonomy: design, code, and media skills organized by domain and category.",
 };
 
 export default async function DomainsPage() {
@@ -15,62 +14,85 @@ export default async function DomainsPage() {
   const byId = new Map(skills.map((s) => [s.id, s]));
 
   return (
-    <div className="container-page py-12">
-      <header className="mb-10 max-w-2xl">
-        <h1 className="text-3xl font-semibold text-ink">Domains</h1>
-        <p className="mt-2 text-muted">
-          Skills are organized into domains and categories. Empty categories are on the
-          roadmap — the curation bar is the same for every one.
+    <div className="container-page py-10">
+      <header className="mb-12 max-w-2xl">
+        <p className="overline mb-3">catalog</p>
+        <h1 className="text-3xl font-semibold tracking-tight text-ink">Domains</h1>
+        <p className="mt-3 text-base text-muted leading-relaxed">
+          Skills are organised into domains and categories. Every slot in the taxonomy
+          is a curation decision — empty categories are on the roadmap.
         </p>
       </header>
 
-      <div className="space-y-14">
-        {domains.map((d) => (
-          <section key={d.slug} id={d.slug} className="scroll-mt-24">
-            <div className="mb-5 flex items-baseline gap-3">
-              <h2 className={`text-2xl font-semibold ${domainAccent(d.slug)}`}>{d.name}</h2>
-              <span className="text-sm text-faint">{d.description}</span>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {d.categories.map((c) => (
-                <div key={c.slug} className="card p-5">
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-medium text-ink">{c.name}</h3>
-                    <span className="text-xs text-faint">
-                      {c.skill_ids.length} skill{c.skill_ids.length === 1 ? "" : "s"}
-                    </span>
+      <div className="space-y-16">
+        {domains.map((d) => {
+          const accent = domainAccent(d.slug);
+          const totalSkills = d.categories.reduce((n, c) => n + c.skill_ids.length, 0);
+
+          return (
+            <section key={d.slug} id={d.slug} className="scroll-mt-24">
+              {/* Domain header */}
+              <div className="mb-6 flex items-baseline gap-4 border-b border-border pb-4">
+                <h2 className={`font-mono text-lg font-semibold tracking-tight ${accent}`}>
+                  {d.slug}
+                </h2>
+                <span className="text-base font-medium text-ink">{d.name}</span>
+                <span className="ml-auto font-mono text-xs text-faint">
+                  {totalSkills} skill{totalSkills !== 1 ? "s" : ""}
+                </span>
+              </div>
+
+              <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {d.categories.map((c) => (
+                  <div key={c.slug} className="card overflow-hidden">
+                    {/* Category header */}
+                    <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
+                      <span className="font-mono text-xs font-medium text-ink">{c.name}</span>
+                      <span className="font-mono text-2xs text-faint">
+                        {c.skill_ids.length} skill{c.skill_ids.length !== 1 ? "s" : ""}
+                      </span>
+                    </div>
+
+                    <div className="px-4 py-3">
+                      <p className="text-xs text-muted mb-3">{c.description}</p>
+
+                      {c.skill_ids.length ? (
+                        <ul className="space-y-1">
+                          {c.skill_ids.map((id) => {
+                            const s = byId.get(id);
+                            return (
+                              <li key={id}>
+                                <Link
+                                  href={`/skills/${id}`}
+                                  className="row-item rounded"
+                                >
+                                  <span className="font-mono text-xs text-ghost select-none w-4">›</span>
+                                  <span className="font-mono text-xs font-medium text-ink flex-1 hover:text-accent-soft transition-colors">
+                                    {s?.name ?? id}
+                                  </span>
+                                  <span className="font-mono text-2xs text-faint truncate max-w-[140px]">
+                                    {s?.summary?.slice(0, 38)}…
+                                  </span>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      ) : (
+                        <p className="font-mono text-xs text-ghost">
+                          coming soon ·{" "}
+                          <Link href="/submit" className="text-accent-soft hover:underline">
+                            suggest a skill
+                          </Link>
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  <p className="mt-1 text-sm text-muted">{c.description}</p>
-                  {c.skill_ids.length ? (
-                    <ul className="mt-4 space-y-1.5">
-                      {c.skill_ids.map((id) => {
-                        const s = byId.get(id);
-                        return (
-                          <li key={id}>
-                            <Link
-                              href={`/skills/${id}`}
-                              className="flex items-center justify-between rounded-md px-2 py-1 text-sm text-muted hover:bg-raised hover:text-ink"
-                            >
-                              <span className="font-mono">{s?.name ?? id}</span>
-                              <span className="text-xs text-faint">{s?.summary?.slice(0, 40)}…</span>
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  ) : (
-                    <p className="mt-4 text-xs text-faint">
-                      Coming soon ·{" "}
-                      <Link href="/submit" className="text-accent-soft hover:underline">
-                        suggest a skill
-                      </Link>
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
+                ))}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,0 +1,24 @@
+{
+  "id": "skillui",
+  "name": "SKILLUI",
+  "summary": "Reverse-engineer any live site, git repo, or local codebase into a Claude-ready design system: colors, typography, spacing, animations, components, and screenshots in one command.",
+  "domain": "design",
+  "category": "ui-ux",
+  "tags": ["design-system", "extraction", "tokens", "typography", "cli", "figma", "tailwind"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/amaancoderx/npxskillui",
+  "docs": "https://skillui.vercel.app",
+  "requires": [],
+  "prevents": "Inconsistent design systems, manually copying tokens from reference sites, agents guessing at colors and spacing.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when a task requires matching an existing site's visual language, extracting design tokens from a URL or codebase, or bootstrapping a design system before building UI.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar SKILLUI — reverse-engineer any site or repo into a Claude-ready design system (tokens, type, spacing, animations, screenshots). Use when the user invokes /agentgrammar-skillui or needs to replicate a visual reference."
+    }
+  }
+}

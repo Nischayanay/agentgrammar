@@ -1,0 +1,24 @@
+{
+  "id": "impeccable",
+  "name": "IMPECCABLE",
+  "summary": "Design intelligence with 23 commands and 45 deterministic detector rules: init a design context once, then craft, audit, polish, critique, animate, and iterate with a shared vocabulary.",
+  "domain": "design",
+  "category": "ui-ux",
+  "tags": ["design-system", "audit", "accessibility", "polish", "animation", "anti-patterns", "detector"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/pbakaus/impeccable",
+  "docs": "https://impeccable.style",
+  "requires": [],
+  "prevents": "AI-slop tells: Inter for everything, purple-to-blue gradients, nested cards, gray text on colored backgrounds, bounce/elastic easing.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when a task builds or reviews any visual interface — layout, components, typography, color, motion, or accessibility. Skip for pure backend, API, DB, or DevOps work.",
+      "rule_globs": [],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar IMPECCABLE — 23 design commands (craft, audit, polish, critique, animate, bolder, quieter…) + 45 anti-pattern detector rules. Use when the user invokes /agentgrammar-impeccable or works on any visual surface."
+    }
+  }
+}

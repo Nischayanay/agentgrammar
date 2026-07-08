@@ -1,0 +1,24 @@
+{
+  "id": "hyperframes",
+  "name": "HYPERFRAMES",
+  "summary": "Write HTML, render deterministic MP4 video: plan the video, author HTML compositions with data-* timing attributes, wire seekable animations (GSAP/Lottie/CSS/Three.js), add media, lint, preview, and render — built for coding agents.",
+  "domain": "media",
+  "category": "video",
+  "tags": ["video", "html", "animation", "gsap", "mp4", "rendering", "motion-graphics", "heygen"],
+  "ide_targets": ["claude-code", "cursor", "codex"],
+  "price_tier": "free",
+  "version": "1.0.0",
+  "publisher": "community",
+  "source": "https://github.com/heygen-com/hyperframes",
+  "docs": "https://hyperframes.heygen.com/introduction",
+  "requires": [],
+  "prevents": "Agents guessing at video authoring patterns — non-seekable animations, misaligned timing, non-deterministic renders, and broken FFmpeg pipelines.",
+  "render": {
+    "cursor": {
+      "rule_description": "Use when the task involves creating, editing, or rendering any video, animation, or motion graphic using HyperFrames HTML compositions.",
+      "rule_globs": ["**/*.html", "**/hyperframes*/**"],
+      "rule_always_apply": false,
+      "skill_description": "agentgrammar HYPERFRAMES — HTML-to-MP4 production loop: plan → write HTML composition → seekable animations → media → lint → preview → render. Use when the user invokes /agentgrammar-hyperframes or asks to make a video."
+    }
+  }
+}

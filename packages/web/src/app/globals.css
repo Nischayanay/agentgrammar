@@ -6,85 +6,179 @@
   color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2A3545; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3A4A5E; }
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(91, 141, 239, 0.25);
+  color: #F0F4F8;
 }
 
+/* ── Motion guard ───────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }
 
+/* ── Base body ──────────────────────────────────────────────── */
 body {
   @apply bg-base text-ink antialiased;
+  /* Subtle grid + deep accent bloom from top-right */
   background-image:
-    radial-gradient(60rem 40rem at 75% -10%, rgba(124, 92, 255, 0.12), transparent 60%),
-    radial-gradient(50rem 30rem at 10% 10%, rgba(61, 220, 132, 0.06), transparent 55%);
+    radial-gradient(ellipse 80vw 60vh at 70% -5%, rgba(91,141,239,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 50vw 40vh at 5%  95%, rgba(52,211,153,0.04) 0%, transparent 60%),
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
   background-attachment: fixed;
 }
 
-/* Visible focus ring on every interactive element — the INTERFACE 'Inclusive' rule. */
+/* ── Focus ──────────────────────────────────────────────────── */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
 [tabindex]:focus-visible {
-  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-base rounded-sm;
+  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-base rounded;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   COMPONENT LAYER
+───────────────────────────────────────────────────────────── */
 @layer components {
+
+  /* Layout */
   .container-page {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
+  .container-narrow {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  /* ── Card ── */
   .card {
-    @apply rounded-xl border border-border bg-surface shadow-card;
+    @apply rounded-lg border border-border bg-surface;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04) inset, 0 4px 24px -8px rgba(0,0,0,0.7);
   }
+  .card-hover {
+    @apply card transition-all duration-200;
+  }
+  .card-hover:hover {
+    @apply border-border-strong;
+    box-shadow: 0 0 0 1px rgba(91,141,239,0.25) inset, 0 8px 32px -8px rgba(91,141,239,0.15);
+  }
+
+  /* ── Chip / badge ── */
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-border bg-raised px-2.5 py-1 text-xs text-muted;
+    @apply inline-flex items-center gap-1 rounded border border-border bg-raised
+           px-2 py-0.5 font-mono text-2xs text-muted;
   }
+
+  /* ── Buttons ── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2
+           text-sm font-medium transition-all duration-150 cursor-pointer;
   }
   .btn-primary {
-    @apply btn bg-accent text-white hover:bg-accent-soft;
+    @apply btn bg-accent text-white hover:bg-accent-soft active:scale-[0.98];
   }
   .btn-ghost {
-    @apply btn border border-border bg-raised text-ink hover:border-accent/60;
+    @apply btn border border-border bg-raised text-sub
+           hover:border-border-strong hover:text-ink active:scale-[0.98];
   }
+  .btn-text {
+    @apply inline-flex items-center gap-1.5 text-sm text-muted
+           hover:text-ink transition-colors duration-150;
+  }
+
+  /* ── Terminal / code surface ── */
+  .terminal {
+    @apply rounded-lg border border-border bg-base font-mono text-sm;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
+  }
+  .terminal-bar {
+    @apply flex items-center gap-2 border-b border-border px-4 py-2.5;
+  }
+  .terminal-dot {
+    @apply h-2.5 w-2.5 rounded-full;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply border-t border-border;
+  }
+
+  /* ── Label / overline ── */
+  .overline {
+    @apply font-mono text-2xs font-medium uppercase tracking-widest text-faint;
+  }
+
+  /* ── Skill prose (SKILL.md renderer) ── */
   .prose-skill {
-    @apply text-sm leading-relaxed text-muted;
+    @apply text-sm leading-relaxed text-sub;
   }
   .prose-skill h1,
-  .prose-skill h2,
-  .prose-skill h3 {
-    @apply mt-6 mb-2 font-semibold text-ink;
-  }
   .prose-skill h2 {
-    @apply text-lg;
+    @apply mt-7 mb-2.5 font-semibold text-ink tracking-tight;
   }
-  .prose-skill h3 {
-    @apply text-base;
+  .prose-skill h2 { @apply text-base; }
+  .prose-skill h3 { @apply mt-5 mb-2 text-sm font-semibold text-ink; }
+  .prose-skill h4 { @apply mt-4 mb-1 text-sm font-medium text-sub; }
+  .prose-skill p  { @apply my-2.5; }
+  .prose-skill ul {
+    @apply my-3 space-y-1.5 pl-4;
+    list-style: none;
+  }
+  .prose-skill ul li::before {
+    content: "—";
+    @apply mr-2 text-faint;
   }
   .prose-skill code {
-    @apply rounded bg-raised px-1.5 py-0.5 font-mono text-xs text-accent-soft;
+    @apply rounded border border-border bg-raised px-1.5 py-0.5
+           font-mono text-xs text-accent-soft;
   }
   .prose-skill pre {
-    @apply my-4 overflow-x-auto rounded-lg border border-border bg-base p-4 font-mono text-xs leading-relaxed text-ink;
+    @apply my-4 overflow-x-auto rounded-lg border border-border bg-base
+           p-4 font-mono text-xs leading-relaxed;
   }
   .prose-skill pre code {
-    @apply bg-transparent p-0 text-ink;
+    @apply border-0 bg-transparent p-0 text-sub;
   }
-  .prose-skill ul {
-    @apply my-3 list-disc space-y-1 pl-5;
+  .prose-skill strong { @apply font-semibold text-ink; }
+  .prose-skill em     { @apply italic text-muted; }
+  .prose-skill table  {
+    @apply my-4 w-full border-collapse text-xs;
   }
-  .prose-skill p {
-    @apply my-3;
+  .prose-skill th {
+    @apply border-b border-border px-3 py-2 text-left font-medium text-faint uppercase tracking-wide;
   }
+  .prose-skill td {
+    @apply border-b border-border/50 px-3 py-2 text-sub;
+  }
+  .prose-skill .truncate-note { @apply text-faint italic; }
+
+  /* ── Stat / number display ── */
+  .stat-number {
+    @apply font-mono text-3xl font-semibold tracking-tighter text-ink;
+  }
+  .stat-label {
+    @apply font-mono text-xs text-faint uppercase tracking-widest;
+  }
+
+  /* ── Row list (leaderboard-style) ── */
+  .row-item {
+    @apply flex items-center gap-4 border-b border-border/60 py-3
+           transition-colors duration-150 hover:bg-raised/50 px-1;
+  }
+  .row-item:last-child { @apply border-b-0; }
 }
